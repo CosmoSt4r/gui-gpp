@@ -1,11 +1,14 @@
 #include "command.h"
 
-std::vector<std::string> stringSplit(std::string str)
+std::vector<std::string> stringSplit(const std::string& str)
 {
     std::vector<std::string> result;
     std::string word = "";
     for (const char& c : str)
     {
+        if (c == ',')
+            continue;
+
         if (c == ' ' && word != "")
         {
             result.push_back(word);
