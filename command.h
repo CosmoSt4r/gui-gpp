@@ -5,13 +5,13 @@
 
 enum Errors
 {
-    NO_SOURCE_FILES = -1,
+    NO_SOURCE_FILES
 };
 
 class Command
 {
     std::string includePath, libPath, optimization,
-                standard, outputName;
+                standard, outputName, outputPath;
     std::vector<std::string> libraries, sourceFiles;
 
 public:
@@ -22,6 +22,7 @@ public:
     void setIncludePath(const std::string& path);
     void setLibPath(const std::string& path);
     void setLibraries(const std::string& libs);
+    void setOutputPath(const std::string& path);
 
     void setOptimization(const std::string& optimization);
     void setStandard(const std::string& standard);

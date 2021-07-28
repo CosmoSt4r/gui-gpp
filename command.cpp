@@ -62,6 +62,10 @@ void
 Command::setOutputName(const std::string& name)
 { this->outputName = name; }
 
+void
+Command::setOutputPath(const std::string& path)
+{ this->outputPath = path; }
+
 std::string
 Command::get() const
 {
@@ -89,9 +93,9 @@ Command::get() const
     { command += "-std=" + this->standard + " "; }
 
     if (this->outputName == "")
-        command += "-o output.exe";
+        command += "-o \"" + this->outputPath + "output.exe\"";
     else
-        command += "-o" + this->outputName;
+        command += "-o \"" + this->outputPath + this->outputName + ".exe\"";
 
     return command;
 }

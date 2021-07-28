@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -8,10 +9,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 
 QString
 getDirectoryPath()
@@ -25,6 +28,7 @@ getDirectoryPath()
 
     return path;
 }
+
 
 void
 MainWindow::on_sourceAdd_clicked()
@@ -51,6 +55,7 @@ MainWindow::on_sourceAdd_clicked()
     ui->sourceFilesLabel->setText(sourceFileNames);
 }
 
+
 void
 MainWindow::on_includeButton_clicked()
 {
@@ -72,25 +77,27 @@ MainWindow::on_libPathButton_clicked()
 
 
 void
+MainWindow::parseForm()
+{
+    MainWindow::command.setIncludePath(ui->includeLineEdit->text().toStdString());
+    MainWindow::command.setLibPath(ui->libPathLineEdit->text().toStdString());
+    MainWindow::command.setLibraries(ui->libsLineEdit->text().toStdString());
+    MainWindow::command.setOptimization(ui->optimComboBox->currentText().toStdString());
+    MainWindow::command.setStandard(ui->stdComboBox->currentText().toStdString());
+    MainWindow::command.setOutputName(ui->outputNameLineEdit->text().toStdString());
+}
+
+
+void
 MainWindow::on_compileButton_clicked()
 {
-    try
+    if (MainWindow::command.getSourceFiles() == "")
+        ui->cmdLineEdit->setText("Specify source files");
+    else
     {
-        MainWindow::command.setIncludePath(ui->includeLineEdit->text().toStdString());
-        MainWindow::command.setLibPath(ui->libPathLineEdit->text().toStdString());
-        MainWindow::command.setLibraries(ui->libsLineEdit->text().toStdString());
-        MainWindow::command.setOptimization(ui->optimComboBox->currentText().toStdString());
-        MainWindow::command.setStandard(ui->stdComboBox->currentText().toStdString());
-        MainWindow::command.setOutputName(ui->outputNameLineEdit->text().toStdString());
-
+        parseForm();
         QString cmd = QString::fromStdString(MainWindow::command.get());
-        ui->libsLineEdit->setText(cmd);
-    }
-    catch (int error)
-    {
-        switch (error)
-        case -1:
-            break;
+        ui->cmdLineEdit->setText(cmd);
     }
 }
 
@@ -99,5 +106,21 @@ void MainWindow::on_sourceClear_clicked()
 {
     MainWindow::command.clearSourceFiles();
     ui->sourceFilesLabel->clear();
+}
+
+
+void MainWindow::on_copyButton_clicked()
+{
+    ui->cmdLineEdit->selectAll();
+    ui->cmdLineEdit->copy();
+}
+
+
+void MainWindow::on_outPathButton_clicked()
+{
+    QString path = getDirectoryPath() + "/";
+
+    MainWindow::command.setOutputPath(path.toStdString());
+    ui->outPathLineEdit->setText(path);
 }
 

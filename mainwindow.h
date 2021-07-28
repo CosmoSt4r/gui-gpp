@@ -29,8 +29,13 @@ private slots:
     void on_includeButton_clicked();
     void on_libPathButton_clicked();
     void on_compileButton_clicked();
+    void parseForm();
 
     void on_sourceClear_clicked();
+
+    void on_copyButton_clicked();
+
+    void on_outPathButton_clicked();
 
 private:
     Ui::MainWindow *ui;
