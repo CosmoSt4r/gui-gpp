@@ -29,6 +29,8 @@ private slots:
 
     void on_includeButton_clicked();
 
+    void on_libPathButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Command command;

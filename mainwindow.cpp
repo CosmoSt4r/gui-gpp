@@ -62,3 +62,12 @@ MainWindow::on_includeButton_clicked()
     ui->includeLineEdit->setText(path);
 }
 
+
+void MainWindow::on_libPathButton_clicked()
+{
+    QString path = getDirectoryPath();
+
+    MainWindow::command.setLibPath(path.toStdString());
+    ui->libPathLineEdit->setText(path);
+}
+

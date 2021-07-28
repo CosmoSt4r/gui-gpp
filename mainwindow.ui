@@ -602,9 +602,9 @@
       </layout>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="libLayout">
+      <layout class="QHBoxLayout" name="libsLayout">
        <item>
-        <widget class="QLabel" name="libLabel">
+        <widget class="QLabel" name="libsLabel">
          <property name="font">
           <font>
            <pointsize>12</pointsize>
@@ -616,7 +616,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="libLineEdit"/>
+        <widget class="QLineEdit" name="libsLineEdit"/>
        </item>
       </layout>
      </item>
