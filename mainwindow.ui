@@ -533,7 +533,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Source folder:</string>
+          <string>Source files:</string>
          </property>
         </widget>
        </item>
@@ -567,7 +567,7 @@
         <widget class="QLineEdit" name="includeLineEdit"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="includeButton">
          <property name="text">
           <string>Choose</string>
          </property>
@@ -593,7 +593,7 @@
         <widget class="QLineEdit" name="libPathLineEdit"/>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="libPathButton">
          <property name="text">
           <string>Choose</string>
          </property>
