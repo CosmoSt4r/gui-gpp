@@ -13,7 +13,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_sourceButton_clicked()
+QString
+getDirectoryPath()
+{
+    QFileDialog dialog;
+    dialog.setDirectory(QDir::homePath());
+    dialog.setFileMode(QFileDialog::Directory);
+
+    QString path;
+    path = dialog.getExistingDirectory();
+
+    return path;
+}
+
+void
+MainWindow::on_sourceButton_clicked()
 {
     QFileDialog dialog;
     dialog.setDirectory(QDir::homePath());
@@ -39,14 +53,10 @@ void MainWindow::on_sourceButton_clicked()
     ui->sourceLineEdit->setText(sourceFileNames);
 }
 
-void MainWindow::on_includeButton_clicked()
+void
+MainWindow::on_includeButton_clicked()
 {
-    QFileDialog dialog;
-    dialog.setDirectory(QDir::homePath());
-    dialog.setFileMode(QFileDialog::Directory);
-
-    QString path;
-    path = dialog.getExistingDirectory();
+    QString path = getDirectoryPath();
 
     MainWindow::command.setIncludePath(path.toStdString());
     ui->includeLineEdit->setText(path);
