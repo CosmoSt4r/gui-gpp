@@ -10,6 +10,8 @@
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 
+#include "command.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -27,5 +29,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Command command;
 };
 #endif // MAINWINDOW_H

@@ -16,7 +16,6 @@ class Command
 
 public:
     Command();
-    ~Command();
 
     void setSourceFiles(const std::string& files);
     void setIncludePath(const std::string& path);
@@ -28,6 +27,7 @@ public:
     void setOutputName(const std::string& name);
 
     std::string get() const;
+    std::string getSourceFiles() const;
 };
 
 #endif // COMMAND_H

@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "command.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -29,11 +28,15 @@ void MainWindow::on_sourceButton_clicked()
     if (dialog.exec())
         fileNames = dialog.selectedFiles();
 
-    QString x = "";
+    QString filePaths = "";
     for (int i = 0; i < fileNames.size(); ++i)
     {
-        x += fileNames[i] + " ";
+        filePaths += fileNames[i] + " ";
     }
+
+    MainWindow::command.setSourceFiles(filePaths.toStdString());
+    QString x = QString::fromStdString(MainWindow::command.getSourceFiles());
     ui->sourceLineEdit->setText(x);
+
 }
 
