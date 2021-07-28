@@ -24,6 +24,5 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    void loadTextFile();
 };
 #endif // MAINWINDOW_H
