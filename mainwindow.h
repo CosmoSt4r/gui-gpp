@@ -25,11 +25,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_sourceButton_clicked();
-
+    void on_sourceAdd_clicked();
     void on_includeButton_clicked();
-
     void on_libPathButton_clicked();
+    void on_compileButton_clicked();
+
+    void on_sourceClear_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -27,7 +27,7 @@ getDirectoryPath()
 }
 
 void
-MainWindow::on_sourceButton_clicked()
+MainWindow::on_sourceAdd_clicked()
 {
     QFileDialog dialog;
     dialog.setDirectory(QDir::homePath());
@@ -42,15 +42,13 @@ MainWindow::on_sourceButton_clicked()
     if (dialog.exec())
         fileNames = dialog.selectedFiles();
 
-    QString filePaths = "";
-    for (int i = 0; i < fileNames.size(); ++i)
-    {
-        filePaths += fileNames[i] + " ";
-    }
+    std::vector<std::string> vecFileNames;
+    for (const QString& file : fileNames)
+        vecFileNames.push_back(file.toStdString());
 
-    MainWindow::command.setSourceFiles(filePaths.toStdString());
+    MainWindow::command.addSourceFiles(vecFileNames);
     QString sourceFileNames = QString::fromStdString(MainWindow::command.getSourceFiles());
-    ui->sourceLineEdit->setText(sourceFileNames);
+    ui->sourceFilesLabel->setText(sourceFileNames);
 }
 
 void
@@ -63,11 +61,43 @@ MainWindow::on_includeButton_clicked()
 }
 
 
-void MainWindow::on_libPathButton_clicked()
+void
+MainWindow::on_libPathButton_clicked()
 {
     QString path = getDirectoryPath();
 
     MainWindow::command.setLibPath(path.toStdString());
     ui->libPathLineEdit->setText(path);
+}
+
+
+void
+MainWindow::on_compileButton_clicked()
+{
+    try
+    {
+        MainWindow::command.setIncludePath(ui->includeLineEdit->text().toStdString());
+        MainWindow::command.setLibPath(ui->libPathLineEdit->text().toStdString());
+        MainWindow::command.setLibraries(ui->libsLineEdit->text().toStdString());
+        MainWindow::command.setOptimization(ui->optimComboBox->currentText().toStdString());
+        MainWindow::command.setStandard(ui->stdComboBox->currentText().toStdString());
+        MainWindow::command.setOutputName(ui->outputNameLineEdit->text().toStdString());
+
+        QString cmd = QString::fromStdString(MainWindow::command.get());
+        ui->libsLineEdit->setText(cmd);
+    }
+    catch (int error)
+    {
+        switch (error)
+        case -1:
+            break;
+    }
+}
+
+
+void MainWindow::on_sourceClear_clicked()
+{
+    MainWindow::command.clearSourceFiles();
+    ui->sourceFilesLabel->clear();
 }
 

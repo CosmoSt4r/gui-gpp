@@ -17,6 +17,10 @@ std::vector<std::string> stringSplit(const std::string& str)
         else
             word += c;
     }
+
+    if (word != "")
+        result.push_back(word);
+
     return result;
 }
 
@@ -24,8 +28,15 @@ Command::Command()
 { ; }
 
 void
-Command::setSourceFiles(const std::string& files)
-{ this->sourceFiles = stringSplit(files); }
+Command::addSourceFiles(const std::vector<std::string>& files)
+{
+    for (const std::string& file : files)
+        this->sourceFiles.push_back(file);
+}
+
+void
+Command::clearSourceFiles()
+{ this->sourceFiles.clear(); }
 
 void
 Command::setIncludePath(const std::string& path)
@@ -60,22 +71,27 @@ Command::get() const
     { throw Errors::NO_SOURCE_FILES; }
 
     for (const std::string& file : this->sourceFiles)
-    { command += file + " "; }
+    { command += '"' + file + "\" "; }
 
     for (const std::string& lib : this->libraries)
     { command += "-l" + lib + " "; }
 
     if (this->includePath != "")
-    { command += "-I" + includePath + " "; }
+    { command += "-I\"" + this->includePath + "\" "; }
 
     if (this->libPath != "")
-    { command += "-L" + libPath + " "; }
+    { command += "-L\"" + this->libPath + "\" "; }
 
     if (this->optimization != "")
-    { command += "-O"; }
+    { command += "-O" + this->optimization + " "; }
 
     if (this->standard != "")
-    { command += "-std="; }
+    { command += "-std=" + this->standard + " "; }
+
+    if (this->outputName == "")
+        command += "-o output.exe";
+    else
+        command += "-o" + this->outputName;
 
     return command;
 }
@@ -84,13 +100,13 @@ std::string
 Command::getSourceFiles() const
 {
     std::string result = "";
-    for (const std::string& filepath : this->sourceFiles)
+    for (int i = 0; i < this->sourceFiles.size(); ++i)
     {
-        for (int i = filepath.size() - 1; i >= 0; --i)
+        for (int j = sourceFiles[i].size() - 1; j >= 0; --j)
         {
-            if (filepath[i] == '/' || filepath == "\\")
+            if (sourceFiles[i][j] == '/' || sourceFiles[i][j] == '\\')
                 break;
-            result = filepath[i] + result;
+            result = sourceFiles[i][j] + result;
         }
         result = " " + result;
     }

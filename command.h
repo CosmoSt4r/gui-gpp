@@ -17,7 +17,8 @@ class Command
 public:
     Command();
 
-    void setSourceFiles(const std::string& files);
+    void addSourceFiles(const std::vector<std::string>& files);
+    void clearSourceFiles();
     void setIncludePath(const std::string& path);
     void setLibPath(const std::string& path);
     void setLibraries(const std::string& libs);

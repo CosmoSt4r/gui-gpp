@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>512</width>
-    <height>404</height>
+    <height>420</height>
    </rect>
   </property>
   <property name="palette">
@@ -462,10 +462,13 @@
       <x>20</x>
       <y>31</y>
       <width>471</width>
-      <height>341</height>
+      <height>352</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_7">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
      <item>
       <layout class="QHBoxLayout" name="headerLayout">
        <item>
@@ -515,6 +518,9 @@
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
        <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
@@ -525,6 +531,9 @@
      </item>
      <item>
       <layout class="QHBoxLayout" name="sourceLayout">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetDefaultConstraint</enum>
+       </property>
        <item>
         <widget class="QLabel" name="sourceLabel">
          <property name="font">
@@ -533,17 +542,34 @@
           </font>
          </property>
          <property name="text">
-          <string>Source files:</string>
+          <string>Source files:   </string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="sourceLineEdit"/>
+        <widget class="QLabel" name="sourceFilesLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="sourceButton">
+        <widget class="QPushButton" name="sourceAdd">
          <property name="text">
-          <string>Choose</string>
+          <string>Add</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="sourceClear">
+         <property name="text">
+          <string>Clear</string>
          </property>
         </widget>
        </item>
@@ -569,7 +595,7 @@
        <item>
         <widget class="QPushButton" name="includeButton">
          <property name="text">
-          <string>Choose</string>
+          <string>Find</string>
          </property>
         </widget>
        </item>
@@ -595,7 +621,7 @@
        <item>
         <widget class="QPushButton" name="libPathButton">
          <property name="text">
-          <string>Choose</string>
+          <string>Find</string>
          </property>
         </widget>
        </item>
