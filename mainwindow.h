@@ -27,6 +27,8 @@ public:
 private slots:
     void on_sourceButton_clicked();
 
+    void on_includeButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Command command;

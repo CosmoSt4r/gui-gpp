@@ -35,8 +35,20 @@ void MainWindow::on_sourceButton_clicked()
     }
 
     MainWindow::command.setSourceFiles(filePaths.toStdString());
-    QString x = QString::fromStdString(MainWindow::command.getSourceFiles());
-    ui->sourceLineEdit->setText(x);
+    QString sourceFileNames = QString::fromStdString(MainWindow::command.getSourceFiles());
+    ui->sourceLineEdit->setText(sourceFileNames);
+}
 
+void MainWindow::on_includeButton_clicked()
+{
+    QFileDialog dialog;
+    dialog.setDirectory(QDir::homePath());
+    dialog.setFileMode(QFileDialog::Directory);
+
+    QString path;
+    path = dialog.getExistingDirectory();
+
+    MainWindow::command.setIncludePath(path.toStdString());
+    ui->includeLineEdit->setText(path);
 }
 
