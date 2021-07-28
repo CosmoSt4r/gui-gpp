@@ -628,6 +628,32 @@
       </layout>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="outPathLayout">
+       <item>
+        <widget class="QLabel" name="outPathLabe">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Output path:  </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="outPathLineEdit"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="outPathButton">
+         <property name="text">
+          <string>Find</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
       <layout class="QHBoxLayout" name="libsLayout">
        <item>
         <widget class="QLabel" name="libsLabel">
@@ -784,32 +810,6 @@
          </property>
          <property name="placeholderText">
           <string/>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="outPathLayout">
-       <item>
-        <widget class="QLabel" name="outPathLabe">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Output path:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="outPathLineEdit"/>
-       </item>
-       <item>
-        <widget class="QPushButton" name="outPathButton">
-         <property name="text">
-          <string>Find</string>
          </property>
         </widget>
        </item>

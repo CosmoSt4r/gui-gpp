@@ -117,3 +117,9 @@ Command::getSourceFiles() const
 
     return result;
 }
+
+std::string
+Command::getFilePath() const
+{
+    return this->outputPath + this->outputName + ".exe";
+}

@@ -37,6 +37,8 @@ private slots:
 
     void on_outPathButton_clicked();
 
+    void on_compileRunButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     Command command;

@@ -30,6 +30,7 @@ public:
 
     std::string get() const;
     std::string getSourceFiles() const;
+    std::string getFilePath() const;
 };
 
 #endif // COMMAND_H

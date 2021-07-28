@@ -98,29 +98,38 @@ MainWindow::on_compileButton_clicked()
         parseForm();
         QString cmd = QString::fromStdString(MainWindow::command.get());
         ui->cmdLineEdit->setText(cmd);
+        system(cmd.toStdString().c_str());
     }
 }
 
+void
+MainWindow::on_compileRunButton_clicked()
+{
+    on_compileButton_clicked();
+    std::string cmd = "start " + MainWindow::command.getFilePath();
+    system(cmd.c_str());
+}
 
-void MainWindow::on_sourceClear_clicked()
+void
+MainWindow::on_sourceClear_clicked()
 {
     MainWindow::command.clearSourceFiles();
     ui->sourceFilesLabel->clear();
 }
 
-
-void MainWindow::on_copyButton_clicked()
+void
+MainWindow::on_copyButton_clicked()
 {
     ui->cmdLineEdit->selectAll();
     ui->cmdLineEdit->copy();
 }
 
 
-void MainWindow::on_outPathButton_clicked()
+void
+MainWindow::on_outPathButton_clicked()
 {
     QString path = getDirectoryPath() + "/";
 
     MainWindow::command.setOutputPath(path.toStdString());
     ui->outPathLineEdit->setText(path);
 }
-
