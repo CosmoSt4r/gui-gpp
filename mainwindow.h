@@ -5,10 +5,7 @@
 
 #include <QFile>
 #include <QFileDialog>
-#include <QTextStream>
-#include <QMessageBox>
-#include <QtPrintSupport/QPrinter>
-#include <QtPrintSupport/QPrintDialog>
+#include <QProcess>
 
 #include "command.h"
 
@@ -25,18 +22,15 @@ public:
     ~MainWindow();
 
 private slots:
+    void parseForm();
+
     void on_sourceAdd_clicked();
     void on_includeButton_clicked();
     void on_libPathButton_clicked();
     void on_compileButton_clicked();
-    void parseForm();
-
     void on_sourceClear_clicked();
-
     void on_copyButton_clicked();
-
     void on_outPathButton_clicked();
-
     void on_compileRunButton_clicked();
 
 private:

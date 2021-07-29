@@ -98,7 +98,15 @@ MainWindow::on_compileButton_clicked()
         parseForm();
         QString cmd = QString::fromStdString(MainWindow::command.get());
         ui->cmdLineEdit->setText(cmd);
-        system(cmd.toStdString().c_str());
+
+        QProcess process;
+        process.start(cmd);
+        process.waitForFinished(-1);
+        process.execute(QString::fromStdString(MainWindow::command.getFilePath()));
+
+        ui->outputPlainText->clear();
+        ui->outputPlainText->appendPlainText(process.readAllStandardError());
+        ui->outputPlainText->appendPlainText(process.readAllStandardOutput());
     }
 }
 
@@ -110,12 +118,14 @@ MainWindow::on_compileRunButton_clicked()
     system(cmd.c_str());
 }
 
+
 void
 MainWindow::on_sourceClear_clicked()
 {
     MainWindow::command.clearSourceFiles();
     ui->sourceFilesLabel->clear();
 }
+
 
 void
 MainWindow::on_copyButton_clicked()
