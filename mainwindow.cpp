@@ -102,7 +102,6 @@ MainWindow::on_compileButton_clicked()
         QProcess process;
         process.start(cmd);
         process.waitForFinished(-1);
-        process.execute(QString::fromStdString(MainWindow::command.getFilePath()));
 
         ui->outputPlainText->clear();
         ui->outputPlainText->appendPlainText(process.readAllStandardError());
@@ -110,12 +109,15 @@ MainWindow::on_compileButton_clicked()
     }
 }
 
+
 void
 MainWindow::on_compileRunButton_clicked()
 {
     on_compileButton_clicked();
-    std::string cmd = "start " + MainWindow::command.getFilePath();
-    system(cmd.c_str());
+
+    QString filepath = QString::fromStdString(MainWindow::command.getFilePath());
+    if (QFileInfo::exists(filepath) && QFileInfo(filepath).isFile())
+        system( ("start " + filepath.toStdString()).c_str() );
 }
 
 
