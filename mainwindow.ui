@@ -663,7 +663,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Additional libraries:</string>
+          <string>Additional dependencies:</string>
          </property>
         </widget>
        </item>
@@ -810,6 +810,18 @@
          </property>
          <property name="placeholderText">
           <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="outputNameLabel_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>.exe</string>
          </property>
         </widget>
        </item>
