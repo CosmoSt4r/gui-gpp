@@ -123,3 +123,16 @@ Command::getFilePath() const
 {
     return this->outputPath + this->outputName + ".exe";
 }
+
+bool
+Command::operator==(const Command& rhs)
+{ return this->get() == rhs.get(); }
+
+
+
+
+
+
+
+
+

@@ -31,6 +31,8 @@ public:
     std::string get() const;
     std::string getSourceFiles() const;
     std::string getFilePath() const;
+
+    bool operator==(const Command& rhs);
 };
 
 #endif // COMMAND_H
