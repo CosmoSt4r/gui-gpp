@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "templateswindow.h"
 #include "./ui_mainwindow.h"
 
 
@@ -7,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    templatesWindow = new TemplatesWindow;
 }
 
 
@@ -145,3 +147,9 @@ MainWindow::on_outPathButton_clicked()
     MainWindow::command.setOutputPath(path.toStdString());
     ui->outPathLineEdit->setText(path);
 }
+
+void MainWindow::on_actionManage_triggered()
+{
+    templatesWindow->show();
+}
+

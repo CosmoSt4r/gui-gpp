@@ -8,6 +8,7 @@
 #include <QProcess>
 
 #include "command.h"
+#include "templateswindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,8 +34,12 @@ private slots:
     void on_outPathButton_clicked();
     void on_compileRunButton_clicked();
 
+    void on_actionManage_triggered();
+
 private:
     Ui::MainWindow *ui;
     Command command;
+    std::vector<Command> commandTemplates;
+    TemplatesWindow* templatesWindow;
 };
 #endif // MAINWINDOW_H

@@ -11,7 +11,8 @@ enum Errors
 class Command
 {
     std::string includePath, libPath, optimization,
-                standard, outputName, outputPath;
+                standard, outputName, outputPath,
+                templateName;
     std::vector<std::string> libraries, sourceFiles;
 
 public:
@@ -26,13 +27,16 @@ public:
 
     void setOptimization(const std::string& optimization);
     void setStandard(const std::string& standard);
+
     void setOutputName(const std::string& name);
+    void setTemplateName(const std::string& name);
 
     std::string get() const;
     std::string getSourceFiles() const;
     std::string getFilePath() const;
 
     bool operator==(const Command& rhs);
+    bool operator!=(const Command& rhs);
 };
 
 #endif // COMMAND_H

@@ -63,6 +63,10 @@ Command::setOutputName(const std::string& name)
 { this->outputName = name; }
 
 void
+Command::setTemplateName(const std::string& name)
+{ this->templateName = name; }
+
+void
 Command::setOutputPath(const std::string& path)
 { this->outputPath = path; }
 
@@ -128,11 +132,6 @@ bool
 Command::operator==(const Command& rhs)
 { return this->get() == rhs.get(); }
 
-
-
-
-
-
-
-
-
+bool
+Command::operator!=(const Command& rhs)
+{ return this->get() != rhs.get(); }
