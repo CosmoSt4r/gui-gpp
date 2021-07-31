@@ -10,26 +10,17 @@ enum Errors
 
 class Command
 {
+public:
+    Command();
+
     std::string includePath, libPath, optimization,
                 standard, outputName, outputPath,
                 templateName;
     std::vector<std::string> libraries, sourceFiles;
 
-public:
-    Command();
-
     void addSourceFiles(const std::vector<std::string>& files);
     void clearSourceFiles();
-    void setIncludePath(const std::string& path);
-    void setLibPath(const std::string& path);
     void setLibraries(const std::string& libs);
-    void setOutputPath(const std::string& path);
-
-    void setOptimization(const std::string& optimization);
-    void setStandard(const std::string& standard);
-
-    void setOutputName(const std::string& name);
-    void setTemplateName(const std::string& name);
 
     std::string get() const;
     std::string getSourceFiles() const;

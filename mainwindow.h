@@ -33,8 +33,8 @@ private slots:
     void on_copyButton_clicked();
     void on_outPathButton_clicked();
     void on_compileRunButton_clicked();
+    void on_saveTempButton_clicked();
 
-    void on_actionManage_triggered();
 
 private:
     Ui::MainWindow *ui;

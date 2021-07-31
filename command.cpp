@@ -1,5 +1,6 @@
 #include "command.h"
 
+
 std::vector<std::string> stringSplit(const std::string& str)
 {
     std::vector<std::string> result;
@@ -24,8 +25,10 @@ std::vector<std::string> stringSplit(const std::string& str)
     return result;
 }
 
+
 Command::Command()
 { ; }
+
 
 void
 Command::addSourceFiles(const std::vector<std::string>& files)
@@ -39,36 +42,8 @@ Command::clearSourceFiles()
 { this->sourceFiles.clear(); }
 
 void
-Command::setIncludePath(const std::string& path)
-{ this->includePath = path; }
-
-void
-Command::setLibPath(const std::string& path)
-{ this->libPath = path; }
-
-void
 Command::setLibraries(const std::string& libs)
 { this->libraries = stringSplit(libs); }
-
-void
-Command::setOptimization(const std::string& optimization)
-{ this->optimization = optimization; }
-
-void
-Command::setStandard(const std::string& standard)
-{ this->standard = standard; }
-
-void
-Command::setOutputName(const std::string& name)
-{ this->outputName = name; }
-
-void
-Command::setTemplateName(const std::string& name)
-{ this->templateName = name; }
-
-void
-Command::setOutputPath(const std::string& path)
-{ this->outputPath = path; }
 
 std::string
 Command::get() const

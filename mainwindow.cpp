@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    templatesWindow = new TemplatesWindow;
 }
 
 
@@ -63,7 +62,7 @@ MainWindow::on_includeButton_clicked()
 {
     QString path = getDirectoryPath();
 
-    MainWindow::command.setIncludePath(path.toStdString());
+    MainWindow::command.includePath = path.toStdString();
     ui->includeLineEdit->setText(path);
 }
 
@@ -73,7 +72,7 @@ MainWindow::on_libPathButton_clicked()
 {
     QString path = getDirectoryPath();
 
-    MainWindow::command.setLibPath(path.toStdString());
+    MainWindow::command.libPath = path.toStdString();
     ui->libPathLineEdit->setText(path);
 }
 
@@ -81,12 +80,13 @@ MainWindow::on_libPathButton_clicked()
 void
 MainWindow::parseForm()
 {
-    MainWindow::command.setIncludePath(ui->includeLineEdit->text().toStdString());
-    MainWindow::command.setLibPath(ui->libPathLineEdit->text().toStdString());
+    MainWindow::command.includePath = ui->includeLineEdit->text().toStdString();
+    MainWindow::command.libPath = ui->libPathLineEdit->text().toStdString();
     MainWindow::command.setLibraries(ui->libsLineEdit->text().toStdString());
-    MainWindow::command.setOptimization(ui->optimComboBox->currentText().toStdString());
-    MainWindow::command.setStandard(ui->stdComboBox->currentText().toStdString());
-    MainWindow::command.setOutputName(ui->outputNameLineEdit->text().toStdString());
+    MainWindow::command.optimization = ui->optimComboBox->currentText().toStdString();
+    MainWindow::command.standard = ui->stdComboBox->currentText().toStdString();
+    MainWindow::command.outputName = ui->outputNameLineEdit->text().toStdString();
+    MainWindow::command.outputPath = ui->outPathLineEdit->text().toStdString();
 }
 
 
@@ -144,12 +144,15 @@ MainWindow::on_outPathButton_clicked()
 {
     QString path = getDirectoryPath() + "/";
 
-    MainWindow::command.setOutputPath(path.toStdString());
+    MainWindow::command.outputPath = path.toStdString();
     ui->outPathLineEdit->setText(path);
 }
 
-void MainWindow::on_actionManage_triggered()
+
+void
+MainWindow::on_saveTempButton_clicked()
 {
+    parseForm();
+    templatesWindow = new TemplatesWindow(this, &command, &commandTemplates);
     templatesWindow->show();
 }
-
