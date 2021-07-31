@@ -8,6 +8,8 @@ enum Errors
     NO_SOURCE_FILES
 };
 
+std::vector<std::string> stringSplit(const std::string& str);
+
 class Command
 {
 public:

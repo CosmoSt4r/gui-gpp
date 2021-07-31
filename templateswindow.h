@@ -9,6 +9,8 @@ namespace Ui {
 class TemplatesWindow;
 }
 
+void readTemplates(std::vector<Command>& templates, const std::string& filename);
+
 class TemplatesWindow : public QMainWindow
 {
     Q_OBJECT
@@ -20,7 +22,6 @@ public:
 
     Command* command;
     std::vector<Command>* commandTemplates;
-
 private slots:
     void on_cancelButton_clicked();
 

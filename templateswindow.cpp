@@ -1,5 +1,70 @@
 #include "templateswindow.h"
 #include "ui_templateswindow.h"
+#include "fstream"
+
+void
+saveTemplates(const std::vector<Command>& commands, const std::string& filename)
+{
+    std::ofstream file(filename);
+
+    for (const Command& command : commands){
+
+        file << command.templateName + "\n";
+
+        for (const std::string& source : command.sourceFiles)
+        { file << source + " "; }
+
+        file << "\n" + command.includePath + "\n" + command.libPath +
+                "\n" + command.outputPath + " \n" + command.outputName + "\n";
+
+        for (const std::string& lib : command.libraries)
+        { file << lib + " "; }
+
+        file << "\n" + command.optimization + "\n" + command.standard + "\n";
+    }
+
+    file.close();
+}
+
+void
+readTemplates(std::vector<Command>& templates, const std::string& filename)
+{
+    std::ifstream file(filename);
+
+    templates.clear();
+    Command command;
+    std::string line;
+
+    while (!file.eof())
+    {
+        std::getline(file, line);
+        command.templateName = line;
+
+        std::getline(file, line);
+        command.sourceFiles = stringSplit(line);
+
+        std::getline(file, line);
+        command.includePath = line;
+        std::getline(file, line);
+        command.libPath = line;
+        std::getline(file, line);
+        command.outputPath = line;
+        std::getline(file, line);
+        command.outputName = line;
+
+        std::getline(file, line);
+        command.libraries = stringSplit(line);
+
+        std::getline(file, line);
+        command.optimization = line;
+        std::getline(file, line);
+        command.standard = line;
+
+        templates.push_back(command);
+        command = Command();
+    }
+    file.close();
+}
 
 void
 TemplatesWindow::fillCommandInfo()
@@ -38,6 +103,8 @@ TemplatesWindow::TemplatesWindow(QWidget *parent,
 
 TemplatesWindow::~TemplatesWindow()
 {
+    saveTemplates(*commandTemplates, "templates.txt");
+    readTemplates(*commandTemplates, "templates.txt");
     delete ui;
 }
 

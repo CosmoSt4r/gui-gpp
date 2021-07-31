@@ -1,6 +1,5 @@
 #include "command.h"
 
-
 std::vector<std::string> stringSplit(const std::string& str)
 {
     std::vector<std::string> result;
