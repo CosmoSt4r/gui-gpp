@@ -29,15 +29,15 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        command.cpp
-        command.h
-        mainwindow.h
-        mainwindow.ui
+        src/mainwindow.cpp
+        src/command.cpp
+        src/command.h
+        src/mainwindow.h
+        src/mainwindow.ui
         Resources.qrc
-        templateswindow.h
-        templateswindow.cpp
-        templateswindow.ui
+        src/templateswindow.h
+        src/templateswindow.cpp
+        src/templateswindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
