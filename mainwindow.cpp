@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     readTemplates(commandTemplates, "templates.txt");
+    updateTemplatesList();
 }
 
 
@@ -151,9 +152,46 @@ MainWindow::on_outPathButton_clicked()
 
 
 void
+MainWindow::updateTemplatesList()
+{
+    ui->templatesList->clear();
+    for (const Command& command: commandTemplates)
+        ui->templatesList->addItem(QString::fromStdString(command.templateName));
+}
+
+
+void
 MainWindow::on_saveTempButton_clicked()
 {
     parseForm();
     templatesWindow = new TemplatesWindow(this, &command, &commandTemplates);
     templatesWindow->show();
+    updateTemplatesList();
+}
+
+void MainWindow::on_templatesRButton_clicked(bool checked)
+{ ui->templatesList->setVisible(checked); }
+
+
+void MainWindow::on_outputRButton_toggled(bool checked)
+{ ui->outputPlainText->setVisible(checked); }
+
+
+void MainWindow::on_templatesList_currentRowChanged(int currentRow)
+{
+    command = commandTemplates[currentRow];
+
+    ui->sourceFilesLabel->setText(QString::fromStdString(command.getSourceFiles()));
+    ui->includeLineEdit->setText(QString::fromStdString(command.includePath));
+    ui->libPathLineEdit->setText(QString::fromStdString(command.libPath));
+    ui->outPathLineEdit->setText(QString::fromStdString(command.outputPath));
+    ui->outputNameLineEdit->setText(QString::fromStdString(command.outputName));
+
+    QString libraries = "";
+    for (const std::string& lib : command.libraries)
+        libraries += QString::fromStdString(lib) + " ";
+    ui->libsLineEdit->setText(libraries);
+
+    ui->optimComboBox->setCurrentText(QString::fromStdString(command.optimization));
+    ui->stdComboBox->setCurrentText(QString::fromStdString(command.standard));
 }

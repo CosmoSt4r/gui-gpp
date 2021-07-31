@@ -24,6 +24,7 @@ public:
 
 private slots:
     void parseForm();
+    void updateTemplatesList();
 
     void on_sourceAdd_clicked();
     void on_includeButton_clicked();
@@ -35,6 +36,12 @@ private slots:
     void on_compileRunButton_clicked();
     void on_saveTempButton_clicked();
 
+
+    void on_templatesRButton_clicked(bool checked);
+
+    void on_outputRButton_toggled(bool checked);
+
+    void on_templatesList_currentRowChanged(int currentRow);
 
 private:
     Ui::MainWindow *ui;
