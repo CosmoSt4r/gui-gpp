@@ -46,3 +46,37 @@ void TemplatesWindow::on_cancelButton_clicked()
     this->~TemplatesWindow();
 }
 
+
+void TemplatesWindow::on_saveButton_clicked()
+{
+    command->templateName = ui->tempNameLineEdit->text().toStdString();
+
+    for (Command &temp : *commandTemplates)
+    {
+        if (temp.templateName == command->templateName)
+        {
+            QMessageBox msgBox;
+            QString message = "Template with name '" + QString::fromStdString(temp.templateName)
+                    + "' already exists.";
+            msgBox.setText(message);
+            msgBox.setInformativeText("Do you want to save it anyway?");
+            msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Cancel);
+            msgBox.setDefaultButton(QMessageBox::Cancel);
+            int ret = msgBox.exec();
+
+            switch(ret)
+            {
+            case QMessageBox::Save:
+                temp = *command;
+                this->~TemplatesWindow();
+                return;
+            case QMessageBox::Cancel:
+                return;
+            }
+        }
+    }
+
+    commandTemplates->push_back(*command);
+    this->~TemplatesWindow();
+}
+

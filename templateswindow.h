@@ -2,6 +2,7 @@
 #define TEMPLATESWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include "command.h"
 
 namespace Ui {
@@ -22,6 +23,8 @@ public:
 
 private slots:
     void on_cancelButton_clicked();
+
+    void on_saveButton_clicked();
 
 private:
     Ui::TemplatesWindow *ui;
