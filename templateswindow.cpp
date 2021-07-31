@@ -38,6 +38,8 @@ readTemplates(std::vector<Command>& templates, const std::string& filename)
     while (!file.eof())
     {
         std::getline(file, line);
+        if (line == "")
+            break;
         command.templateName = line;
 
         std::getline(file, line);
