@@ -166,11 +166,13 @@ MainWindow::on_saveTempButton_clicked()
     parseForm();
     templatesWindow = new TemplatesWindow(this, &command, &commandTemplates);
     templatesWindow->show();
-    updateTemplatesList();
 }
 
 void MainWindow::on_templatesRButton_clicked(bool checked)
-{ ui->templatesList->setVisible(checked); }
+{
+    updateTemplatesList();
+    ui->templatesList->setVisible(checked);
+}
 
 
 void MainWindow::on_outputRButton_toggled(bool checked)
